@@ -16,7 +16,7 @@ A Python project initializer CLI that sets up project scaffolding with best prac
 
 ```bash
 # Clone the repository
-git clone https://github.com/username/maya.git
+git clone https://github.com/WeiNyn/maya.git
 cd maya
 
 # Install the package
