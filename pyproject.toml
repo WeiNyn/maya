@@ -1,0 +1,83 @@
+[build-system]
+requires = ["setuptools>=61.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "maya"
+version = "0.1.0"
+description = "Python project initializer with best practices"
+authors = [
+    {name = "Your Name", email = "your.email@example.com"}
+]
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: Software Development :: Build Tools",
+    "Intended Audience :: Developers",
+]
+dependencies = [
+    "typer[all]>=0.9.0",
+    "rich>=13.4.2",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/username/maya"
+"Bug Tracker" = "https://github.com/username/maya/issues"
+
+[project.scripts]
+maya = "maya.main:main"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.3.1",
+    "pytest-cov>=4.1.0",
+    "black>=23.3.0",
+    "mypy>=1.3.0",
+    "ruff>=0.0.272",
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+no_implicit_optional = true
+strict_optional = true
+
+[[tool.mypy.overrides]]
+module = "tests.*"
+disallow_untyped_defs = false
+disallow_incomplete_defs = false
+
+[tool.ruff]
+select = ["E", "F", "B", "I"]
+ignore = []
+line-length = 120
+target-version = "py38"
+fix = true
+exclude = ["src/maya/templates"]
+
+[tool.ruff.isort]
+known-first-party = ["maya"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+addopts = "--cov=maya"
+
+[tool.coverage.run]
+source = ["maya"]
+omit = ["tests/*"] 
